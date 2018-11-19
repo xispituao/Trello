@@ -10,8 +10,6 @@ public class Usuarios {
     private ArrayList<Quadros> quadros = new ArrayList<>();
 
     //Construtor
-
-
     public Usuarios(String nome, String email, String senha) {
         setNome(nome);
         setEmail(email);
@@ -49,10 +47,10 @@ public class Usuarios {
     }
 
     //Métodos
-    public void adicionarQuadro(String nome) {
+    public boolean adicionarQuadro(String nome) {
         Quadros new_quadro = new Quadros(nome);
         quadros.add(new_quadro);
-
+        return true;
     }
 
 

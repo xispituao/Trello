@@ -63,7 +63,11 @@ public class App {
                 }else if(opcao == 1){
                     System.out.println("Título: ");
                     String titulo = scanner.next();
-                    intermediario.adicionarQuadro(titulo);
+                    if (intermediario.adicionarQuadro(titulo)){
+                        System.out.println("Quadro adicionado.");
+                    }else {
+                        System.out.println("Falhou XDDDD !");
+                    }
                 }else if(opcao == 2){
                     System.out.println("Título: ");
                     String titulo = scanner.next();
@@ -77,10 +81,15 @@ public class App {
                 }else if(opcao == 3){
                     System.out.println("Titulo quadro:");
                     String quadro = scanner.next();
-                    System.out.println("Titulo cartao: ");
-                    String cartao = scanner.next();
                     System.out.println("Titulo lista");
                     String lista = scanner.next();
+                    System.out.println("Titulo cartao: ");
+                    String cartao = scanner.next();
+                    if (intermediario.adicionarCartao(quadro, cartao, lista)){
+                        System.out.println("Cartao adicionado!");
+                    }else {
+                        System.out.println("Falhou :D !!");
+                    }
 
                 }
 

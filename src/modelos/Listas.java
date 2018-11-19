@@ -18,8 +18,9 @@ public class Listas {
         this.nome = nome;
     }
 
-    public void adicionarCartao(String titulo, String descricao){
-        Cartoes newcartao = new Cartoes(titulo, descricao);
+    public boolean adicionarCartao(String titulo){
+        Cartoes newcartao = new Cartoes(titulo);
         cartoes.add(newcartao);
+        return true;
     }
 }

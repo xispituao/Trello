@@ -1,5 +1,6 @@
 package intermediario;
 
+import modelos.Listas;
 import modelos.Quadros;
 import modelos.Usuarios;
 
@@ -30,8 +31,8 @@ public class Services {
         return false;
     }
 
-    public void adicionarQuadro(String titulo){
-        usuariologado.adicionarQuadro(titulo);
+    public boolean adicionarQuadro(String titulo){
+        return usuariologado.adicionarQuadro(titulo);
     }
 
     public boolean adicionarLista(String nome_quadro, String titulo){
@@ -45,12 +46,17 @@ public class Services {
         return false;
     }
 
-    public void adicionarCartao(String titulo_quadro, String titulo_cartao, String titulo_lista){
+    public boolean adicionarCartao(String titulo_quadro, String titulo_cartao, String titulo_lista){
         for (Quadros quadro:usuariologado.getQuadros()) {
             if (quadro.getTitulo().equals(titulo_quadro)){
-                return quadro.criarLista(titulo);
+                for (Listas lista : quadro.getListas()){
+                    if (lista.getNome().equals(titulo_lista)){
+                        return lista.adicionarCartao(titulo_cartao);
+                    }
+                }
 
             }
         }
+        return false;
     }
 }
