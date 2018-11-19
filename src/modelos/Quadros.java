@@ -8,6 +8,11 @@ public class Quadros {
     private int ordem;
     private ArrayList<Listas> listas = new ArrayList<>();
 
+    public Quadros(String titulo, int ordem) {
+        this.titulo = titulo;
+        this.ordem = ordem;
+    }
+
     //Gettes e Settes
 
     public ArrayList<Listas> getListas() {
