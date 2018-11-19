@@ -53,11 +53,35 @@ public class App {
                 }
             }else {
                 System.out.println("1 - Criar Quadro");
+                System.out.println("2 - Adicionar lista em um quadro");
+                System.out.println("3 - Adicionar cartao a uma lista");
                 System.out.println("0 - Deslogar");
                 int opcao = scanner.nextInt();
                 if (opcao == 0){
                     System.out.println("Deslogando..");
                     logado = false;
+                }else if(opcao == 1){
+                    System.out.println("Título: ");
+                    String titulo = scanner.next();
+                    intermediario.adicionarQuadro(titulo);
+                }else if(opcao == 2){
+                    System.out.println("Título: ");
+                    String titulo = scanner.next();
+                    System.out.println("Qual quadro adicionar? ");
+                    String quadro = scanner.next();
+                    if (intermediario.adicionarLista(quadro, titulo)){
+                        System.out.println("Lista Adicionado!");
+                    }else {
+                        System.out.println("Falhou pô :(");
+                    }
+                }else if(opcao == 3){
+                    System.out.println("Titulo quadro:");
+                    String quadro = scanner.next();
+                    System.out.println("Titulo cartao: ");
+                    String cartao = scanner.next();
+                    System.out.println("Titulo lista");
+                    String lista = scanner.next();
+
                 }
 
             }

@@ -7,7 +7,7 @@ public class Quadros {
     private String titulo;
     private ArrayList<Listas> listas = new ArrayList<>();
 
-    public Quadros(String titulo, int ordem) {
+    public Quadros(String titulo) {
         this.titulo = titulo;
     }
 
@@ -26,9 +26,10 @@ public class Quadros {
     }
 
     //Métodos
-    public void criarLista(String nome){
+    public boolean criarLista(String nome){
         Listas nova_lista = new Listas(nome);
         listas.add(nova_lista);
+        return true;
     }
 
     public boolean deletarLista(String nome){

@@ -19,6 +19,11 @@ public class Usuarios {
     }
 
     //gettes e settes
+
+    public ArrayList<Quadros> getQuadros() {
+        return quadros;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -44,9 +49,11 @@ public class Usuarios {
     }
 
     //Métodos
-    /*public void adicionarQuadro(){
-        Quadros new_quadro = new Quadros();
-    }*/
+    public void adicionarQuadro(String nome) {
+        Quadros new_quadro = new Quadros(nome);
+        quadros.add(new_quadro);
+
+    }
 
 
 }
