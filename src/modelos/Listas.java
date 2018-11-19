@@ -1,7 +1,10 @@
 package modelos;
 
+import java.util.ArrayList;
+
 public class Listas {
     private String nome;
+    private ArrayList<Cartoes> cartoes = new ArrayList<>();
 
     public Listas(String nome) {
         setNome(nome);
