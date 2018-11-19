@@ -8,6 +8,11 @@ public class Cartoes {
     private ArrayList<Comentarios> comentarios = new ArrayList<>();
     private ArrayList<Etiqueta> etiquetas = new ArrayList<>();
 
+    public Cartoes(String titulo, String descricao){
+        setTitulo(titulo);
+        setDescricao(descricao);
+    }
+
     public String getTitulo() {
         return titulo;
     }

@@ -17,4 +17,8 @@ public class Listas {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    public void adicionarCartao(String titulo, String descricao){
+        Cartoes newcartao = new Cartoes(titulo, descricao);
+    }
 }
