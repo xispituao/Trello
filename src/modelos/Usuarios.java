@@ -1,4 +1,4 @@
-package trello;
+package modelos;
 
 public class Usuarios {
     //Atributos
