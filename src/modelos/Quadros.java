@@ -5,12 +5,10 @@ import java.util.ArrayList;
 public class Quadros {
     //Atributos
     private String titulo;
-    private int ordem;
     private ArrayList<Listas> listas = new ArrayList<>();
 
     public Quadros(String titulo, int ordem) {
         this.titulo = titulo;
-        this.ordem = ordem;
     }
 
     //Gettes e Settes
@@ -25,14 +23,6 @@ public class Quadros {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
-    }
-
-    public int getOrdem() {
-        return ordem;
-    }
-
-    public void setOrdem(int ordem) {
-        this.ordem = ordem;
     }
 
     //Métodos

@@ -52,6 +52,7 @@ public class App {
                     System.out.println("Digite uma opção válida!!");
                 }
             }else {
+                System.out.println("1 - Criar Quadro");
                 System.out.println("0 - Deslogar");
                 int opcao = scanner.nextInt();
                 if (opcao == 0){
