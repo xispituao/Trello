@@ -59,4 +59,8 @@ public class Services {
         }
         return false;
     }
+
+    public ArrayList<Quadros> pegarQuadros(){
+        return usuariologado.getQuadros();
+    }
 }

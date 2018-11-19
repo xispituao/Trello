@@ -1,9 +1,12 @@
 package app;
 
 import intermediario.Services;
+import modelos.Cartoes;
+import modelos.Listas;
 import modelos.Quadros;
 import modelos.Usuarios;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App {
@@ -52,10 +55,13 @@ public class App {
                     System.out.println("Digite uma opção válida!!");
                 }
             }else {
-                System.out.println("1 - Criar Quadro");
-                System.out.println("2 - Adicionar lista em um quadro");
-                System.out.println("3 - Adicionar cartao a uma lista");
-                System.out.println("0 - Deslogar");
+                System.out.println("1 - Criar Quadro\n" +
+                                   "2 - Adicionar lista em um quadro\n" +
+                                   "3 - Adicionar cartao a uma lista\n" +
+                                   "4 - Listar quadros\n" +
+                                   "5 - Listar lista\n" +
+                                   "6 - Listar Cartoes\n" +
+                                   "0 - Deslogar");
                 int opcao = scanner.nextInt();
                 if (opcao == 0){
                     System.out.println("Deslogando..");
@@ -91,6 +97,16 @@ public class App {
                         System.out.println("Falhou :D !!");
                     }
 
+                }else if(opcao == 4){
+                   ArrayList<Quadros> quadros = intermediario.pegarQuadros();
+                   for (Quadros quadro: quadros){
+                       System.out.println(quadro.getTitulo());
+                       for (Listas lista : quadro.getListas()){
+                           System.out.println(lista.getNome());
+                           for (Cartoes cartao : lista.getCartoes())
+                               System.out.println(cartao.getTitulo());
+                       }
+                   }
                 }
 
             }

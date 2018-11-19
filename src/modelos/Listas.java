@@ -10,6 +10,11 @@ public class Listas {
         setNome(nome);
     }
 
+    public ArrayList<Cartoes> getCartoes() {
+        return cartoes;
+    }
+
+
     public String getNome() {
         return nome;
     }
