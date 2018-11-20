@@ -1,14 +1,25 @@
 package intermediario;
 
-import modelos.Listas;
-import modelos.Quadros;
-import modelos.Usuarios;
+import modelos.*;
 
 import java.util.ArrayList;
 
 public class Services {
     private ArrayList<Usuarios> usuarios = new ArrayList<>();
     private Usuarios usuariologado;
+    public Quadros quadroEmUso;
+    private boolean logado;
+    public Listas listaEmUso;
+    public Cartoes cartaoEmUso;
+
+
+    public boolean isLogado() {
+        return logado;
+    }
+
+    public void setLogado(boolean logado) {
+        this.logado = logado;
+    }
 
     public boolean adicionarUsuario(String nome, String email, String senha){
         for (Usuarios usuario : usuarios){
@@ -63,4 +74,31 @@ public class Services {
     public ArrayList<Quadros> pegarQuadros(){
         return usuariologado.getQuadros();
     }
+
+    public boolean moverCartao(int novaposicao){
+        return listaEmUso.moverCartao(cartaoEmUso, novaposicao);
+    }
+
+    public boolean arquivarCartao(){
+        cartaoEmUso.setArquivado(true);
+        Log newlog = new Log("arquivado");
+        return true;
+    }
+
+    /*public void mostrarAmbienteTrello(){
+        ArrayList<Quadros> quadros = this.pegarQuadros();
+        int quantidadesDeQuadros = quadros.size();
+        ArrayList<Object> dados = new ArrayList<>();
+        dados.add(quantidadesDeQuadros);
+        for (Quadros quadro: quadros){
+            dados.add()
+            dados.add(quadro.getListas().size());
+            for (Listas lista : quadro.getListas()){
+                dados.add(lista.getCartoes().size());
+
+                for (Cartoes cartao : lista.getCartoes())
+                    System.out.println(cartao.getTitulo());
+            }
+        }
+    }*/
 }
