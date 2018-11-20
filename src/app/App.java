@@ -72,15 +72,8 @@ public class App {
                         System.out.println("Falhou XDDDD !");
                     }
                 }else if(opcao == 2){
-                    System.out.println("Título: ");
-                    String titulo = scanner.next();
-                    System.out.println("Qual quadro adicionar? ");
-                    String quadro = scanner.next();
-                    if (intermediario.adicionarLista(quadro, titulo)){
-                        System.out.println("Lista Adicionado!");
-                    }else {
-                        System.out.println("Falhou pô :(");
-                    }
+
+
                 }/*else if(opcao == 3){
                     System.out.println("Titulo quadro:");
                     String quadro = scanner.next();
