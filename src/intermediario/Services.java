@@ -6,19 +6,36 @@ import java.util.ArrayList;
 
 public class Services {
     private ArrayList<Usuarios> usuarios = new ArrayList<>();
-    private Usuarios usuariologado;
+    private Usuarios usuariologado = null;
     public Quadros quadroEmUso;
-    private boolean logado;
-    public Listas listaEmUso;
-    public Cartoes cartaoEmUso;
+    public Listas listaEmUso = null;
+    public Cartoes cartaoEmUso = null;
 
 
-    public boolean isLogado() {
-        return logado;
+    public Quadros getQuadroEmUso() {
+        return quadroEmUso;
     }
 
-    public void setLogado(boolean logado) {
-        this.logado = logado;
+    public Listas getListaEmUso() {
+        return listaEmUso;
+    }
+
+    public Cartoes getCartaoEmUso() {
+        return cartaoEmUso;
+    }
+
+    public Usuarios getUsuariologado() {
+        return usuariologado;
+    }
+
+    public boolean selecionarQuadro(String titulo){
+        for (Quadros quadro :usuariologado.getQuadros()){
+            if (quadro.getTitulo().equals(titulo)){
+                this.quadroEmUso = quadro;
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean adicionarUsuario(String nome, String email, String senha){
@@ -42,6 +59,9 @@ public class Services {
         return false;
     }
 
+    public void deslogar(){
+        this.usuariologado = null;
+    }
     public boolean adicionarQuadro(String titulo){
         return usuariologado.adicionarQuadro(titulo);
     }

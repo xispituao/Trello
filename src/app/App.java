@@ -14,7 +14,7 @@ public class App {
         Scanner scanner = new Scanner(System.in);
         Services intermediario = new Services();
         while(true){
-            if (!intermediario.isLogado()){
+            if (intermediario.getUsuariologado() == null){
                 System.out.println("\t\t****Trello****\n" +
                                 "1 - Log in\n" +
                                 "2 - Sign in\n" +
@@ -33,7 +33,6 @@ public class App {
                     if (senha.equals(senha_confirmacao)){
                         if (intermediario.logar(email, senha)){
                             System.out.println("Sucesso!!");
-                            intermediario.setLogado(true);
                         }else {
                             System.out.println("Usuário e/ou senha errada(s)");
                         }
@@ -55,14 +54,34 @@ public class App {
                 }else {
                     System.out.println("Digite uma opção válida!!");
                 }
+            }else if(intermediario.getCartaoEmUso() != null){
+                System.out.println("1 - Criar Comentário\n" +
+                                   "2 - Adicionar Etiqueta\n" +
+                                   "3 -Mostrar comentario\n" +
+                                   "4 - Mostrar etiquetas\n" +
+                                   "0 - Sair do cartao");
+
+            }else if(intermediario.getListaEmUso()!=null){
+                System.out.println("1 - Criar Cartao\n" +
+                                   "2 - Usar Cartao\n" +
+                                   "3 -Mostrar Cartoes\n" +
+                                   "0 - Sair da lista");
+
+            }else if(intermediario.getQuadroEmUso() != null){
+                System.out.println("1 - Criar Lista\n" +
+                                   "2 - Usar Lista\n" +
+                                   "3 -Mostrar listas\n" +
+                                   "0 - Sair do quadro");
+
             }else {
                 System.out.println("1 - Criar Quadro\n" +
                                    "2 - Usar Quadro\n" +
+                                   "3 - Listar\n" +
                                    "0 - Deslogar");
                 int opcao = scanner.nextInt();
                 if (opcao == 0){
                     System.out.println("Deslogando..");
-                    intermediario.setLogado(false);
+                    intermediario.deslogar();
                 }else if(opcao == 1){
                     System.out.println("Título: ");
                     String titulo = scanner.next();
@@ -72,22 +91,15 @@ public class App {
                         System.out.println("Falhou XDDDD !");
                     }
                 }else if(opcao == 2){
-
-
-                }/*else if(opcao == 3){
-                    System.out.println("Titulo quadro:");
-                    String quadro = scanner.next();
-                    System.out.println("Titulo lista");
-                    String lista = scanner.next();
-                    System.out.println("Titulo cartao: ");
-                    String cartao = scanner.next();
-                    if (intermediario.adicionarCartao(quadro, cartao, lista)){
-                        System.out.println("Cartao adicionado!");
+                    System.out.println("Título: ");
+                    String titulo = scanner.next();
+                    if (intermediario.selecionarQuadro(titulo)){
+                        System.out.println("Quadro selecionado.");
                     }else {
-                        System.out.println("Falhou :D !!");
+                        System.out.println("Falhou XDDDD !");
                     }
 
-                }*/else if(opcao == 666){
+                }else if(opcao == 666){
                    ArrayList<Quadros> quadros = intermediario.pegarQuadros();
                    for (Quadros quadro: quadros){
                        System.out.println(quadro.getTitulo());
