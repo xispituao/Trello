@@ -42,4 +42,10 @@ public class Quadros {
         return false;
     }
 
+    public boolean moverLista(Listas lista, int novaposicao){
+        listas.remove(lista);
+        listas.add(novaposicao - 1, lista);
+        return true;
+    }
+
 }

@@ -32,6 +32,7 @@ public class Listas {
         this.nome = nome;
     }
 
+
     public boolean adicionarCartao(String titulo){
         Cartoes newcartao = new Cartoes(titulo);
         cartoes.add(0,newcartao);
@@ -42,8 +43,13 @@ public class Listas {
 
     public boolean moverCartao(Cartoes cartao, int posicaoDestino){
         cartoes.remove(cartao);
-        cartoes.add(posicaoDestino,cartao);
+        cartoes.add(posicaoDestino - 1,cartao);
         Log log = new Log("movido",posicaoDestino);
+        return true;
+    }
+
+    public boolean excluirCartao(Cartoes cartao){
+        cartoes.remove(cartao);
         return true;
     }
 }

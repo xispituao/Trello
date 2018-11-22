@@ -16,9 +16,9 @@ public class App {
         while(true){
             if (intermediario.getUsuariologado() == null){
                 System.out.println("\t\t****Trello****\n" +
-                                "1 - Log in\n" +
-                                "2 - Sign in\n" +
-                                "0 - Exit");
+                        "1 - Log in\n" +
+                        "2 - Sign inn\n" +
+                        "0 - Exit");
                 int opcao = scanner.nextInt();
                 if (opcao == 0){
                     System.out.println("Saindo...");
@@ -56,28 +56,29 @@ public class App {
                 }
             }else if(intermediario.getCartaoEmUso() != null){
                 System.out.println("1 - Criar Comentário\n" +
-                                   "2 - Adicionar Etiqueta\n" +
-                                   "3 -Mostrar comentario\n" +
-                                   "4 - Mostrar etiquetas\n" +
-                                   "0 - Sair do cartao");
+                        "2 - Adicionar Etiqueta\n" +
+                        "3 - Mostrar comentario\n" +
+                        "4 - Mostrar etiquetas\n" +
+                        "0 - Sair do cartao");
 
             }else if(intermediario.getListaEmUso()!=null){
                 System.out.println("1 - Criar Cartao\n" +
-                                   "2 - Usar Cartao\n" +
-                                   "3 -Mostrar Cartoes\n" +
-                                   "0 - Sair da lista");
+                        "2 - Usar Cartao\n" +
+                        "3 - Mostrar Cartoes\n" +
+                        "0 - Sair da lista");
+
 
             }else if(intermediario.getQuadroEmUso() != null){
                 System.out.println("1 - Criar Lista\n" +
-                                   "2 - Usar Lista\n" +
-                                   "3 -Mostrar listas\n" +
-                                   "0 - Sair do quadro");
+                        "2 - Usar Lista\n" +
+                        "3 - Mostrar listas\n" +
+                        "0 - Sair do quadro");
 
             }else {
                 System.out.println("1 - Criar Quadro\n" +
-                                   "2 - Usar Quadro\n" +
-                                   "3 - Listar\n" +
-                                   "0 - Deslogar");
+                        "2 - Usar Quadro\n" +
+                        "3 - Listar\n" +
+                        "0 - Deslogar");
                 int opcao = scanner.nextInt();
                 if (opcao == 0){
                     System.out.println("Deslogando..");
@@ -100,15 +101,15 @@ public class App {
                     }
 
                 }else if(opcao == 666){
-                   ArrayList<Quadros> quadros = intermediario.pegarQuadros();
-                   for (Quadros quadro: quadros){
-                       System.out.println(quadro.getTitulo());
-                       for (Listas lista : quadro.getListas()){
-                           System.out.println(lista.getNome());
-                           for (Cartoes cartao : lista.getCartoes())
-                               System.out.println(cartao.getTitulo());
-                       }
-                   }
+                    ArrayList<Quadros> quadros = intermediario.pegarQuadros();
+                    for (Quadros quadro: quadros){
+                        System.out.println(quadro.getTitulo());
+                        for (Listas lista : quadro.getListas()){
+                            System.out.println(lista.getNome());
+                            for (Cartoes cartao : lista.getCartoes())
+                                System.out.println(cartao.getTitulo());
+                        }
+                    }
                 }
 
             }

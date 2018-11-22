@@ -99,9 +99,24 @@ public class Services {
         return listaEmUso.moverCartao(cartaoEmUso, novaposicao);
     }
 
+    public boolean moverLista(int novaposicao){
+        return quadroEmUso.moverLista(listaEmUso, novaposicao);
+    }
+
+    public boolean excluirCartao(){
+        Cartoes cartao = cartaoEmUso;
+        cartaoEmUso = null;
+        return listaEmUso.excluirCartao(cartao);
+    }
+
     public boolean arquivarCartao(){
         cartaoEmUso.setArquivado(true);
         Log newlog = new Log("arquivado");
+        return true;
+    }
+
+    public boolean arquivarLista(){
+        listaEmUso.setArquivado(true);
         return true;
     }
 
