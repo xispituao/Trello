@@ -93,11 +93,37 @@ public class App {
                                 "5 - Azul\n");
 
                         int opcao2 = scanner.nextInt();
+                        System.out.println("Dê uma descricao da etiqueta:");
+                        String descricao = scanner1.nextLine();
                         switch (opcao2){
                             case 1:
+                                intermediario.adicionarEtiqueta("Vermelho",descricao);
+                                break;
+                            case 2:
+                                intermediario.adicionarEtiqueta("Amarelo",descricao);
+                                break;
+                            case 3:
+                                intermediario.adicionarEtiqueta("Laranja",descricao);
+                                break;
+                            case 4:
+                                intermediario.adicionarEtiqueta("Roxo",descricao);
+                                break;
+                            case 5:
+                                intermediario.adicionarEtiqueta("Azul",descricao);
                                 break;
                         }
                         break;
+                    case 3:
+                        System.out.println("Qual das etiquetas abaixo quer remover?(Digite o nome exatamente igual!)");
+                        if (intermediario.etiquetas().isEmpty()){
+                            System.out.println("Sem etiquetas!");
+                        }else {
+                            for (int i= 0;i < intermediario.etiquetas().size();i++){
+                                System.out.println(intermediario.etiquetas().get(i));
+                            }
+                            String etiqueta = scanner.next();
+                            intermediario.excluirEtiqueta(etiqueta);
+                        }
                 }
 
 

@@ -175,14 +175,14 @@ public class Service {
     public ArrayList<Cartao> pegarCartoes(){
         return listaEmUso.getCartoes();
     }
-    public ArrayList<Etiqueta> pegarEtiquetas(){
-        return cartaoEmUso.getEtiquetas();
-    }
 
     public void adicionarEtiqueta(String cor, String nome){
         cartaoEmUso.adicionarOuModificarEtiqueta(cor, nome);
     }
 
+    public void excluirEtiqueta(String cor){
+        cartaoEmUso.excluirEtiqueta(cor);
+    }
 
 
 
