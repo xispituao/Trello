@@ -71,6 +71,8 @@ public class App {
                         "2 - Adicionar ou  modificar o nome da Etiqueta\n" +
                         "3 - Retirar etiqueta\n" +
                         "4 - Mover cartao\n" +
+                        "5 - Arquivar cartao\n" +
+                        "6 - Excluir cartao" +
                         "0 - Sair do cartao");
                 int opcao = scanner.nextInt();
                 switch (opcao){
@@ -124,12 +126,33 @@ public class App {
                             }
                             String etiqueta = scanner.next();
                             intermediario.excluirEtiqueta(etiqueta);
+                            break;
                         }
                     case 4:
                         System.out.println("Nova posicao?");
                         int posicao = scanner.nextInt();
                         intermediario.moverCartao(posicao);
                         System.out.println("Sucesso!");
+                        break;
+                    case 5:
+                        intermediario.arquivarCartao();
+                        System.out.println("Sucesso!");
+                        break;
+                    case 6:
+                        System.out.println("Continuar?\n1 - sim\n2 - nao");
+                        int continuar = scanner.nextInt();
+                        if (continuar == 1){
+                            if (intermediario.excluirCartao()){
+                                System.out.println("Apagado");
+                            }else {
+                                System.out.println("Arquive primeiro!");
+                            }
+
+                        }else if(continuar == 2){
+                            System.out.println("Cancelado1");
+                        }else {
+                            System.out.println("Digite uma opcao valida!");
+                        }
                 }
 
 

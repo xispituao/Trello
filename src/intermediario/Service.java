@@ -161,9 +161,14 @@ public class Service {
     }
 
     public boolean excluirCartao(){
-        Cartao cartao = cartaoEmUso;
-        cartaoEmUso = null;
-        return listaEmUso.excluirCartao(cartao);
+        if (cartaoEmUso.isArquivado()){
+            Cartao cartao = cartaoEmUso;
+            cartaoEmUso = null;
+            return listaEmUso.excluirCartao(cartao);
+        }else {
+            return false;
+        }
+
     }
 
     public boolean arquivarCartao(){
