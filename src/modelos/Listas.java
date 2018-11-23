@@ -3,12 +3,12 @@ package modelos;
 import java.util.ArrayList;
 
 public class Listas {
-    private String nome;
+    private String titulo;
     private boolean arquivado;
     private ArrayList<Cartoes> cartoes = new ArrayList<>();
 
     public Listas(String nome) {
-        setNome(nome);
+        setTitulo(nome);
         setArquivado(false);
     }
 
@@ -20,18 +20,22 @@ public class Listas {
         return arquivado;
     }
 
+
     public void setArquivado(boolean arquivado) {
         this.arquivado = arquivado;
     }
 
-    public String getNome() {
-        return nome;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    private void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
+    public void arquivar(){
+        setArquivado(!arquivado);
+    }
 
     public boolean adicionarCartao(String titulo){
         Cartoes newcartao = new Cartoes(titulo);

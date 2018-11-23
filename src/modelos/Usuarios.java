@@ -17,7 +17,6 @@ public class Usuarios {
     }
 
     //gettes e settes
-
     public ArrayList<Quadros> getQuadros() {
         return quadros;
     }
@@ -47,12 +46,36 @@ public class Usuarios {
     }
 
     //Métodos
-    public boolean adicionarQuadro(String nome) {
-        Quadros new_quadro = new Quadros(nome);
+    public boolean adicionarQuadro(String titulo) {
+        for(Quadros quadro : quadros){
+            if (quadro.getTitulo().equals(titulo)){
+                return false;
+            }
+        }
+        Quadros new_quadro = new Quadros(titulo);
         quadros.add(new_quadro);
         return true;
     }
 
+    public ArrayList<Quadros> pegarQuadrosFavoritos(){
+        ArrayList<Quadros> quadros_favoritos = new ArrayList<>();
+        for (Quadros quadro : quadros){
+            if (quadro.isFavorito()){
+                quadros_favoritos.add(quadro);
+            }
+        }
+        return quadros_favoritos;
+    }
+
+    public ArrayList<Quadros> pegarQuadrosNaoFavoritos(){
+        ArrayList<Quadros> quadros_nao_favoritos = new ArrayList<>();
+        for (Quadros quadro : quadros){
+            if (!quadro.isFavorito()){
+                quadros_nao_favoritos.add(quadro);
+            }
+        }
+        return quadros_nao_favoritos;
+    }
 
 }
 
