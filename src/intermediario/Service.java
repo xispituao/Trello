@@ -209,4 +209,8 @@ public class Service {
         }
         return etiquetas;
     }
+
+    public ArrayList<Log> logs(){
+        return cartaoEmUso.getLogs();
+    }
 }

@@ -73,6 +73,7 @@ public class App {
                         "4 - Mover cartao\n" +
                         "5 - Arquivar cartao\n" +
                         "6 - Excluir cartao" +
+                        "7 - Logs\n" +
                         "0 - Sair do cartao");
                 int opcao = scanner.nextInt();
                 switch (opcao){
@@ -153,6 +154,15 @@ public class App {
                         }else {
                             System.out.println("Digite uma opcao valida!");
                         }
+                    case 7:
+                        if(!intermediario.logs().isEmpty()){
+                            for(int i = 0; i < intermediario.logs().size();i++){
+                                System.out.println(intermediario.logs().get(i));
+                            }
+                        }else {
+                            System.out.println("Sem logs");
+                        }
+
                 }
 
 

@@ -56,12 +56,13 @@ public class Lista {
     public boolean moverCartao(Cartao cartao, int posicaoDestino){
         cartoes.remove(cartao);
         cartoes.add(posicaoDestino - 1,cartao);
-        Log log = new Log("movido",posicaoDestino);
+        cartao.addLog("movido", posicaoDestino);
         return true;
     }
 
     public boolean excluirCartao(Cartao cartao){
         cartoes.remove(cartao);
+        cartao.addLog("movido");
         return true;
     }
 

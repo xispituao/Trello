@@ -31,4 +31,9 @@ public class Log {
     public void setPosicao(int posicao) {
         this.posicao = posicao;
     }
+
+    @Override
+    public String toString(){
+        return estado + posicao;
+    }
 }

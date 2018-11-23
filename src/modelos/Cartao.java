@@ -64,6 +64,10 @@ public class Cartao {
         return etiquetas;
     }
 
+    public ArrayList<Log> getLogs() {
+        return logs;
+    }
+
     //Metodos
     public void criarComentario(String comentario){
         Comentario newcomentario = new Comentario(comentario);
@@ -95,6 +99,11 @@ public class Cartao {
 
     public void addLog(String estado, int posicao){
         Log newlog = new Log(estado, posicao);
+        logs.add(newlog);
+    }
+
+    public void addLog(String estado){
+        Log newlog = new Log(estado);
         logs.add(newlog);
     }
 
