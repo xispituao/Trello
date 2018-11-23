@@ -70,6 +70,7 @@ public class App {
                 System.out.println("1 - Criar Comentário\n" +
                         "2 - Adicionar ou  modificar o nome da Etiqueta\n" +
                         "3 - Retirar etiqueta\n" +
+                        "4 - Mover cartao\n" +
                         "0 - Sair do cartao");
                 int opcao = scanner.nextInt();
                 switch (opcao){
@@ -114,7 +115,7 @@ public class App {
                         }
                         break;
                     case 3:
-                        System.out.println("Qual das etiquetas abaixo quer remover?(Digite o nome exatamente igual!)");
+                        System.out.println("Qual das etiquetas abaixo quer remover?(Digite o  da cor exatamente igual!)");
                         if (intermediario.etiquetas().isEmpty()){
                             System.out.println("Sem etiquetas!");
                         }else {
@@ -124,6 +125,11 @@ public class App {
                             String etiqueta = scanner.next();
                             intermediario.excluirEtiqueta(etiqueta);
                         }
+                    case 4:
+                        System.out.println("Nova posicao?");
+                        int posicao = scanner.nextInt();
+                        intermediario.moverCartao(posicao);
+                        System.out.println("Sucesso!");
                 }
 
 
