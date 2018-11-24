@@ -119,6 +119,8 @@ public class App {
                                 case 5:
                                     intermediario.adicionarEtiqueta("Azul", descricao);
                                     break;
+                                    default:
+                                        System.out.println("Digite umas das cores validas!");
                             }
                         }else {
                             System.out.println("Desarquive o cartao antes!");
