@@ -9,7 +9,7 @@ public class Quadro {
     private ArrayList<Lista> listas = new ArrayList<>();
 
     //Construtor
-    public Quadro(String titulo) {
+    Quadro(String titulo) {
         this.titulo = titulo;
     }
 
@@ -23,11 +23,7 @@ public class Quadro {
         return titulo;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public boolean isFavorito() {
+    boolean isFavorito() {
         return favorito;
     }
 
@@ -47,12 +43,8 @@ public class Quadro {
         return true;
     }
 
-    public boolean deletarLista(Lista lista){
-        if (lista.isArquivado()){
-            listas.remove(lista);
-            return true;
-        }
-        return false;
+    public void deletarLista(Lista lista) {
+        listas.remove(lista);
     }
 
     public boolean moverLista(Lista lista, int novaposicao){

@@ -6,34 +6,34 @@ public class Log {
     private int posicao;
 
     //Construtores
-    public Log(String estado, int posicao) {
+    Log(String estado, int posicao) {
         setEstado(estado);
         setPosicao(posicao);
     }
         //Overload
-    public Log(String estado){
+        Log(String estado){
         setEstado(estado);
     }
 
     //Getters e Setters
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
+    private void setEstado(String estado) {
         this.estado = estado;
     }
 
-    public int getPosicao() {
-        return posicao;
-    }
-
-    public void setPosicao(int posicao) {
+    private void setPosicao(int posicao) {
         this.posicao = posicao;
     }
 
     @Override
     public String toString(){
-        return estado + posicao;
+        switch (estado) {
+            case "Criado":
+                return estado;
+            case "Movido":
+                return estado + " para a posicao " + posicao;
+            default:
+                return estado;
+        }
+
     }
 }

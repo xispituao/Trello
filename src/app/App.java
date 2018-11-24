@@ -13,9 +13,9 @@ public class App {
         while(true){
             if (intermediario.getUsuariologado() == null){
                 System.out.println("\t\t****Trello****\n" +
-                        "1 - Log in\n" +
-                        "2 - Sign in\n" +
-                        "0 - Exit");
+                        "1 - Logar\n" +
+                        "2 - Cadastrar\n" +
+                        "0 - Sair");
                 int opcao = scanner.nextInt();
                 if (opcao == 0){
                     System.out.println("Saindo...");
@@ -26,14 +26,12 @@ public class App {
                     System.out.println("Senha: ");
                     String senha = scanner.next();
                     if (intermediario.logar(email, senha)){
-                        System.out.println("Sucesso!!");
+                        System.out.println("Sucesso!!\n");
                     }else {
-                        System.out.println("Usuário e/ou senha errada(s)");
+                        System.out.println("Usuário e/ou senha errada(s)\n");
                     }
 
                 }else if(opcao == 2){
-                    System.out.println("Nome: ");
-                    String nome = scanner.next();
                     System.out.println("Email: ");
                     String email = scanner.next();
                     System.out.println("Senha: ");
@@ -41,15 +39,15 @@ public class App {
                     System.out.println("Digite a senha novamente: ");
                     String senha_confirmacao = scanner.next();
                     if (senha.equals(senha_confirmacao)){
-                        if (intermediario.adicionarUsuario(nome, email, senha)){
-                            System.out.println("Usuário criado.");
+                        if (intermediario.adicionarUsuario(email, senha)){
+                            System.out.println("Usuário criado.\n");
                         }else {
-                            System.out.println("Usuário já existente!");
+                            System.out.println("Usuário já existente!\n");
                         }
                     }
 
                 }else {
-                    System.out.println("Digite uma opção válida!!");
+                    System.out.println("Digite uma opção válida!!\n");
                 }
             }else if(intermediario.getCartaoEmUso() != null){
                 if (!intermediario.etiquetas().isEmpty()){
@@ -71,103 +69,129 @@ public class App {
                         "2 - Adicionar ou  modificar o nome da Etiqueta\n" +
                         "3 - Retirar etiqueta\n" +
                         "4 - Mover cartao\n" +
-                        "5 - Arquivar cartao\n" +
-                        "6 - Excluir cartao" +
+                        "5 - Arquivar ou desarquivar cartao\n" +
+                        "6 - Excluir cartao\n" +
                         "7 - Logs\n" +
                         "0 - Sair do cartao");
                 int opcao = scanner.nextInt();
                 switch (opcao){
                     case 0:
                         intermediario.sairDoCartao();
-                        System.out.println("Saindo do cartao...");
+                        System.out.println("Saindo do cartao...\n");
                         break;
                     case 1:
-                        System.out.println("Comentario:");
+                        if(!intermediario.cartaoTaArquivado()){
+                            System.out.println("Comentario:");
 
-                        String comentario = scanner1.nextLine();
-                        intermediario.criarComentarios(comentario);
-                        System.out.println("Sucesso");
+                            String comentario = scanner1.nextLine();
+                            intermediario.criarComentarios(comentario);
+                            System.out.println("Sucesso\n");
+                        }else {
+                            System.out.println("Desarquive o cartao antes!");
+                        }
+
                         break;
                     case 2:
-                        System.out.println("Selecione uma das cores:\n" +
-                                "1 - Vermelho\n" +
-                                "2 - Amarelo\n" +
-                                "3 - Laranja\n" +
-                                "4 - Roxo\n" +
-                                "5 - Azul\n");
+                        if(!intermediario.cartaoTaArquivado()) {
+                            System.out.println("Selecione uma das cores:\n" +
+                                    "1 - Vermelho\n" +
+                                    "2 - Amarelo\n" +
+                                    "3 - Laranja\n" +
+                                    "4 - Roxo\n" +
+                                    "5 - Azul\n");
 
-                        int opcao2 = scanner.nextInt();
-                        System.out.println("Dê uma descricao da etiqueta:");
-                        String descricao = scanner1.nextLine();
-                        switch (opcao2){
-                            case 1:
-                                intermediario.adicionarEtiqueta("Vermelho",descricao);
-                                break;
-                            case 2:
-                                intermediario.adicionarEtiqueta("Amarelo",descricao);
-                                break;
-                            case 3:
-                                intermediario.adicionarEtiqueta("Laranja",descricao);
-                                break;
-                            case 4:
-                                intermediario.adicionarEtiqueta("Roxo",descricao);
-                                break;
-                            case 5:
-                                intermediario.adicionarEtiqueta("Azul",descricao);
-                                break;
+                            int opcao2 = scanner.nextInt();
+                            System.out.println("Dê uma descricao da etiqueta:");
+                            String descricao = scanner1.nextLine();
+                            switch (opcao2) {
+                                case 1:
+                                    intermediario.adicionarEtiqueta("Vermelho", descricao);
+                                    break;
+                                case 2:
+                                    intermediario.adicionarEtiqueta("Amarelo", descricao);
+                                    break;
+                                case 3:
+                                    intermediario.adicionarEtiqueta("Laranja", descricao);
+                                    break;
+                                case 4:
+                                    intermediario.adicionarEtiqueta("Roxo", descricao);
+                                    break;
+                                case 5:
+                                    intermediario.adicionarEtiqueta("Azul", descricao);
+                                    break;
+                            }
+                        }else {
+                            System.out.println("Desarquive o cartao antes!");
                         }
                         break;
                     case 3:
-                        System.out.println("Qual das etiquetas abaixo quer remover?(Digite o  da cor exatamente igual!)");
-                        if (intermediario.etiquetas().isEmpty()){
-                            System.out.println("Sem etiquetas!");
-                        }else {
-                            for (int i= 0;i < intermediario.etiquetas().size();i++){
-                                System.out.println(intermediario.etiquetas().get(i));
+                        if (!intermediario.cartaoTaArquivado()) {
+                            System.out.println("Qual das etiquetas abaixo quer remover?(Digite o  da cor exatamente igual!)");
+                            if (intermediario.etiquetas().isEmpty()) {
+                                System.out.println("Sem etiquetas!\n");
+                            } else {
+                                for (int i = 0; i < intermediario.etiquetas().size(); i++) {
+                                    System.out.println(intermediario.etiquetas().get(i));
+                                }
+                                String etiqueta = scanner.next();
+                                intermediario.excluirEtiqueta(etiqueta);
                             }
-                            String etiqueta = scanner.next();
-                            intermediario.excluirEtiqueta(etiqueta);
-                            break;
+                        }else {
+                            System.out.println("Desarquive o cartao antes!");
                         }
+                        break;
                     case 4:
-                        System.out.println("Nova posicao?");
-                        int posicao = scanner.nextInt();
-                        intermediario.moverCartao(posicao);
-                        System.out.println("Sucesso!");
+                        if (!intermediario.cartaoTaArquivado()) {
+                            System.out.println("Nova posicao?\n");
+                            int posicao = scanner.nextInt();
+                            if (intermediario.moverCartao(posicao)) {
+                                System.out.println("Sucesso!\n");
+                            } else {
+                                System.out.println("Escolha uma posicao valida!\n");
+                            }
+                        }else {
+                            System.out.println("Desarquive o cartao antes!");
+                        }
                         break;
                     case 5:
                         intermediario.arquivarCartao();
-                        System.out.println("Sucesso!");
+                        System.out.println("Sucesso!\n");
                         break;
                     case 6:
-                        System.out.println("Continuar?\n1 - sim\n2 - nao");
-                        int continuar = scanner.nextInt();
-                        if (continuar == 1){
-                            if (intermediario.excluirCartao()){
-                                System.out.println("Apagado");
+                        if (intermediario.cartaoTaArquivado()){
+                            System.out.println("Continuar?\n1 - sim\n2 - nao");
+                            int continuar = scanner.nextInt();
+                            if (continuar == 1){
+                                intermediario.excluirCartao();
+                                System.out.println("Apagado\n");
+                            }else if(continuar == 2){
+                                System.out.println("Cancelado!\n");
                             }else {
-                                System.out.println("Arquive primeiro!");
+                                System.out.println("Escolha uma das opcoes validas!\n");
                             }
 
-                        }else if(continuar == 2){
-                            System.out.println("Cancelado1");
                         }else {
-                            System.out.println("Digite uma opcao valida!");
+                            System.out.println("Arquive cartao antes!");
                         }
+                        break;
                     case 7:
                         if(!intermediario.logs().isEmpty()){
+                            System.out.println("**Logs**\n");
                             for(int i = 0; i < intermediario.logs().size();i++){
                                 System.out.println(intermediario.logs().get(i));
                             }
+                            System.out.println("\n");
                         }else {
-                            System.out.println("Sem logs");
+                            System.out.println("Sem logs\n");
                         }
+                        break;
 
                 }
 
 
-            }else if(intermediario.getListaEmUso()!=null){
+            }else if(intermediario.getListaEmUso()!= null){
                 if (!intermediario.pegarCartoes().isEmpty()){
+                    System.out.println("\n");
                     System.out.println("\tCartao da lista " + intermediario.getListaEmUso());
                     for (int i =0; i < intermediario.pegarCartoes().size();i++){
                         if (intermediario.pegarCartoes().get(i).isArquivado()){
@@ -176,6 +200,7 @@ public class App {
                             System.out.println(intermediario.pegarCartoes().get(i));
                         }
                     }
+                    System.out.println("\n");
                 }
                 System.out.println("1 - Mover lista\n" +
                         "2 - Arquivar ou desarquivar lista\n" +
@@ -186,60 +211,72 @@ public class App {
                 int opcao = scanner.nextInt();
                 switch (opcao){
                     case 1:
-                        System.out.println("Nova posicao?:");
-                        int posicao = scanner.nextInt();
-                        if (intermediario.moverLista(posicao)){
-                            System.out.println("Movida!");
+                        if (!intermediario.listaTaArquivada()) {
+                            System.out.println("Nova posicao?:\n");
+                            int posicao = scanner.nextInt();
+                            if (intermediario.moverLista(posicao)) {
+                                System.out.println("Movida!\n");
+                            } else {
+                                System.out.println("Escolha uma posicao válida!\n");
+                            }
                         }else {
-                            System.out.println("Escolha uma posicao válida!");
+                            System.out.println("Desarquive lista antes!");
                         }
                         break;
                     case 2:
                         intermediario.arquivarLista();
-                        System.out.println("Arquivado!");
+                        System.out.println("Sucesso!\n");
                         break;
                     case 3:
-                        System.out.println("Tem certeza?\n1 - Sim\n2 - nao\n");
-                        int confimacao = scanner.nextInt();
-                        switch (confimacao){
-                            case 1:
-                                if (intermediario.deletarLista()){
-                                    System.out.println("Lista deletada!");
-                                }else {
-                                    System.out.println("Lista precisa esta arquivada antes!");
-                                }
-                                break;
+                        if (intermediario.listaTaArquivada()){
+                            System.out.println("Tem certeza?\n1 - Sim\n2 - nao\n");
+                            int confimacao = scanner.nextInt();
+                            switch (confimacao){
+                                case 1:
+                                    intermediario.deletarLista();
+                                    System.out.println("Lista deletada!\n");
+                                    break;
+                                case 2:
+                                    System.out.println("Cancelado\n");
                                 default:
-                                    System.out.println("Escolha uma das opcoes validas!");
+                                    System.out.println("Escolha uma das opcoes validas!\n");
+                            }
+                        }else {
+                            System.out.println("Arquive a lista antes!");
                         }
                         break;
                     case 4:
-                        System.out.println("Titulo: ");
-                        String titulo = scanner.next();
-                        String situacao = intermediario.criarCartao(titulo);
-                        if (situacao.equals("Criado")){
-                            System.out.println("Cartao criado!");
-                        }else if(situacao.equals("Arquivado")){
-                            System.out.println("Lista precisa ser desarquivado antes de criar um cartao novo!");
+                        if (!intermediario.listaTaArquivada()) {
+                            System.out.println("Titulo: ");
+                            String titulo = scanner.next();
+                            if (intermediario.criarCartao(titulo)) {
+                                System.out.println("Cartao criado!\n");
+                            } else {
+                                System.out.println("Cartao ja existe!\n");
+                            }
                         }else {
-                            System.out.println("Cartao ja existe!");
+                            System.out.println("Desarquive a lista antes!");
                         }
                         break;
                     case 5:
-                        System.out.println("Titulo: ");
-                        titulo = scanner.next();
-                        if (intermediario.selecionarCartao(titulo)){
-                            System.out.println("Cartao selecionada!");
+                        if (!intermediario.listaTaArquivada()) {
+                            System.out.println("Titulo: ");
+                            String titulo = scanner.next();
+                            if (intermediario.selecionarCartao(titulo)) {
+                                System.out.println("Cartao selecionada!\n");
+                            } else {
+                                System.out.println("Cartao não existe!\n");
+                            }
                         }else {
-                            System.out.println("Cartao não existe!");
+                            System.out.println("Desarquive a lista antes");
                         }
                         break;
                     case 0:
                         intermediario.sairDaLista();
-                        System.out.println("Saindo da lista...");
+                        System.out.println("Saindo da lista...\n");
                         break;
                         default:
-                            System.out.println("Escolha uma das opcoes validas!");
+                            System.out.println("Escolha uma das opcoes validas!\n");
                 }
 
 
@@ -253,8 +290,9 @@ public class App {
                             System.out.println(intermediario.listas().get(i));
                         }
                     }
+                    System.out.println("\n");
                 }
-                System.out.println("\n1 - Favoritar ou desfavoritar quadro\n" +
+                System.out.println("1 - Favoritar ou desfavoritar quadro\n" +
                         "2 - Criar lista\n" +
                         "3 - Usar lista\n" +
                         "0 - Sair do quadro");
@@ -262,33 +300,33 @@ public class App {
                 switch (opcao){
                     case 1:
                         intermediario.favoritarQuadro();
-                        System.out.println("Sucesso!");
+                        System.out.println("Sucesso!\n");
                         break;
                     case 2:
                         System.out.println("Titulo: ");
                         String titulo = scanner.next();
                         if (intermediario.adicionarLista(titulo)){
-                            System.out.println("Lista adicionada!");
+                            System.out.println("Lista adicionada!\n");
                         }else{
-                            System.out.println("Lista já existente!");
+                            System.out.println("Lista já existente!\n");
                         }
                         break;
                     case 3:
                         System.out.println("Titulo: ");
                         titulo = scanner.next();
                         if (intermediario.selecionarLista(titulo)){
-                            System.out.println("Lista selecionada!");
+                            System.out.println("Lista selecionada!\n");
                         }else {
-                            System.out.println("Lista não existe!");
+                            System.out.println("Lista não existe!\n");
                         }
                         break;
                     case 0:
-                        System.out.println("Saindo do quadro...");
+                        System.out.println("Saindo do quadro...\n");
                         intermediario.sairDoQuadro();
                         break;
 
                         default:
-                            System.out.println("Escolha umas das opcoes validas!!");
+                            System.out.println("Escolha umas das opcoes validas!!\n");
 
 
                 }
@@ -316,27 +354,27 @@ public class App {
                         "0 - Deslogar");
                 int opcao = scanner.nextInt();
                 if (opcao == 0){
-                    System.out.println("Deslogando..");
+                    System.out.println("Deslogando..\n");
                     intermediario.deslogar();
                 }else if(opcao == 1){
                     System.out.println("Título: ");
                     String titulo = scanner.next();
                     if (intermediario.adicionarQuadro(titulo)){
-                        System.out.println("Quadro adicionado.");
+                        System.out.println("Quadro adicionado.\n");
                     }else {
-                        System.out.println("Quadro ja existe !");
+                        System.out.println("Quadro ja existe !\n");
                     }
                 }else if(opcao == 2){
                     System.out.println("Título: ");
                     String titulo = scanner.next();
                     if (intermediario.selecionarQuadro(titulo)){
-                        System.out.println("Quadro selecionado.");
+                        System.out.println("Quadro selecionado.\n");
                     }else {
-                        System.out.println("Quadro nao existe !");
+                        System.out.println("Quadro nao existe !\n");
                     }
 
                 }else {
-                    System.out.println("Escola uma opcao valida!");
+                    System.out.println("Escola uma opcao valida!\n");
                 }
 
             }

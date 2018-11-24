@@ -9,7 +9,7 @@ public class Lista {
     private ArrayList<Cartao> cartoes = new ArrayList<>();
 
     //Construtor
-    public Lista(String nome) {
+    Lista(String nome) {
         setTitulo(nome);
         setArquivado(false);
     }
@@ -23,7 +23,7 @@ public class Lista {
         return arquivado;
     }
 
-    public void setArquivado(boolean arquivado) {
+    private void setArquivado(boolean arquivado) {
         this.arquivado = arquivado;
     }
 
@@ -38,6 +38,7 @@ public class Lista {
     //Metodos
     public void arquivar(){
         setArquivado(!arquivado);
+
     }
 
     public boolean adicionarCartao(String titulo){
@@ -54,16 +55,19 @@ public class Lista {
     }
 
     public boolean moverCartao(Cartao cartao, int posicaoDestino){
-        cartoes.remove(cartao);
-        cartoes.add(posicaoDestino - 1,cartao);
-        cartao.addLog("movido", posicaoDestino);
-        return true;
+        if (posicaoDestino <= cartoes.size() && posicaoDestino != 0) {
+            cartoes.remove(cartao);
+            cartoes.add(posicaoDestino - 1, cartao);
+            cartao.addLog("Movido", posicaoDestino);
+            return true;
+        }else {
+            return false;
+        }
     }
 
-    public boolean excluirCartao(Cartao cartao){
+    public void excluirCartao(Cartao cartao){
         cartoes.remove(cartao);
-        cartao.addLog("movido");
-        return true;
+        cartao.addLog("Excluido");
     }
 
     @Override

@@ -32,13 +32,13 @@ public class Service {
 
 
     //Metodos do usuario
-    public boolean adicionarUsuario(String nome, String email, String senha){
+    public boolean adicionarUsuario(String email, String senha){
         for (Usuario usuario : usuarios){
             if (usuario.getEmail().equals(email)){
                 return false;
             }
         }
-        Usuario new_usuario = new Usuario(nome, email, senha);
+        Usuario new_usuario = new Usuario(email, senha);
         usuarios.add(new_usuario);
         return true;
     }
@@ -115,17 +115,17 @@ public class Service {
         listaEmUso.arquivar();
     }
 
-    public boolean deletarLista(){
-        if (quadroEmUso.deletarLista(listaEmUso)){
-            listaEmUso = null;
-            return true;
-        }else {
-            return false;
-        }
+    public void deletarLista(){
+        quadroEmUso.deletarLista(listaEmUso);
+        listaEmUso = null;
     }
 
     public void sairDaLista(){
         listaEmUso = null;
+    }
+
+    public boolean listaTaArquivada(){
+        return listaEmUso.isArquivado();
     }
 
     //Metodos para cartao
@@ -143,61 +143,47 @@ public class Service {
         cartaoEmUso = null;
     }
 
-    public String criarCartao(String titulo_cartao){
-        if(listaEmUso.isArquivado()){
-            return "Arquivado";
-        }else {
-            if (listaEmUso.adicionarCartao(titulo_cartao)){
-                return "Criado";
-            }else {
-                return "JaExiste";
-            }
-        }
-
+    public boolean criarCartao(String titulo_cartao){
+        return listaEmUso.adicionarCartao(titulo_cartao);
     }
 
     public boolean moverCartao(int novaposicao){
         return listaEmUso.moverCartao(cartaoEmUso, novaposicao);
     }
 
-    public boolean excluirCartao(){
-        if (cartaoEmUso.isArquivado()){
-            Cartao cartao = cartaoEmUso;
-            cartaoEmUso = null;
-            return listaEmUso.excluirCartao(cartao);
-        }else {
-            return false;
-        }
-
+    public void excluirCartao(){
+        Cartao cartao = cartaoEmUso;
+        cartaoEmUso = null;
+        listaEmUso.excluirCartao(cartao);
     }
 
-    public boolean arquivarCartao(){
-        cartaoEmUso.setArquivado(true);
-        Log newlog = new Log("arquivado");
-        return true;
+    public void arquivarCartao(){
+        if (cartaoEmUso.isArquivado()){
+            cartaoEmUso.setArquivado();
+            cartaoEmUso.addLog("desarquivado");
+        }else {
+            cartaoEmUso.setArquivado();
+            cartaoEmUso.addLog("arquivado");
+        }
+
+
     }
 
     public ArrayList<Cartao> pegarCartoes(){
         return listaEmUso.getCartoes();
     }
 
+    public boolean cartaoTaArquivado(){
+        return cartaoEmUso.isArquivado();
+    }
+
+    //Metodos etiquetas
     public void adicionarEtiqueta(String cor, String nome){
         cartaoEmUso.adicionarOuModificarEtiqueta(cor, nome);
     }
 
     public void excluirEtiqueta(String cor){
         cartaoEmUso.excluirEtiqueta(cor);
-    }
-
-
-
-
-    public ArrayList<Comentario> comentarios(){
-        return cartaoEmUso.getComentarios();
-    }
-
-    public void criarComentarios(String comentario){
-        cartaoEmUso.criarComentario(comentario);
     }
 
     public ArrayList<Etiqueta> etiquetas(){
@@ -210,6 +196,16 @@ public class Service {
         return etiquetas;
     }
 
+    //Metodos comentario
+    public ArrayList<Comentario> comentarios(){
+        return cartaoEmUso.getComentarios();
+    }
+
+    public void criarComentarios(String comentario){
+        cartaoEmUso.criarComentario(comentario);
+    }
+
+    //Metodo log
     public ArrayList<Log> logs(){
         return cartaoEmUso.getLogs();
     }

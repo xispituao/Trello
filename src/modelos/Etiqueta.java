@@ -7,7 +7,7 @@ public class Etiqueta {
     private String nome;
 
     //Construtor
-    public Etiqueta(String cor){
+    Etiqueta(String cor){
         setCor(cor);
     }
 
@@ -17,27 +17,23 @@ public class Etiqueta {
         return sendo_usada;
     }
 
-    public void setSendo_usada() {
+    void setSendo_usada() {
         this.sendo_usada = !this.sendo_usada;
     }
 
-    public String getCor() {
+    String getCor() {
         return cor;
     }
 
-    public void setCor(String cor) {
+    private void setCor(String cor) {
         this.cor = cor;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
+    void setNome(String nome) {
         this.nome = nome;
     }
         //Overload
-    public void setNome(){
+        void setNome(){
         this.nome = null;
     }
 

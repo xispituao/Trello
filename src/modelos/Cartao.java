@@ -5,16 +5,15 @@ import java.util.ArrayList;
 public class Cartao {
     //Atributos
     private String titulo;
-    private String descricao;
     private boolean arquivado;
     private ArrayList<Comentario> comentarios = new ArrayList<>();
     private ArrayList<Etiqueta> etiquetas = new ArrayList<>();
     private ArrayList<Log> logs = new ArrayList<>();
 
     //Construtor
-    public Cartao(String titulo){
+    Cartao(String titulo){
         setTitulo(titulo);
-        setArquivado(false);
+        arquivado = false;
         Etiqueta vermelho = new Etiqueta("Vermelho");
         Etiqueta amarelo = new Etiqueta("Amarelo");
         Etiqueta laranja = new Etiqueta("Laranja");
@@ -32,32 +31,20 @@ public class Cartao {
         return titulo;
     }
 
-    public void setTitulo(String titulo) {
+    private void setTitulo(String titulo) {
         this.titulo = titulo;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
     }
 
     public ArrayList<Comentario> getComentarios() {
         return comentarios;
     }
 
-    public void setComentarios(ArrayList<Comentario> comentarios) {
-        this.comentarios = comentarios;
-    }
-
     public boolean isArquivado() {
         return arquivado;
     }
 
-    public void setArquivado(boolean arquivado) {
-        this.arquivado = arquivado;
+    public void setArquivado() {
+        this.arquivado = !this.arquivado;
     }
 
     public ArrayList<Etiqueta> getEtiquetas() {
@@ -72,6 +59,7 @@ public class Cartao {
     public void criarComentario(String comentario){
         Comentario newcomentario = new Comentario(comentario);
         comentarios.add(newcomentario);
+        this.addLog("Criado comentario");
     }
 
     public void adicionarOuModificarEtiqueta(String cor, String nome){
@@ -79,9 +67,11 @@ public class Cartao {
             if(etiqueta.getCor().equals(cor)){
                 if(etiqueta.isSendo_usada()){
                     etiqueta.setNome(nome);
+                    this.addLog("Etiqueta modificada");
                 }else{
                     etiqueta.setSendo_usada();
                     etiqueta.setNome(nome);
+                    this.addLog("Etiqueta criada");
                 }
 
             }
@@ -93,11 +83,12 @@ public class Cartao {
             if(etiqueta.getCor().equals(cor)){
                 etiqueta.setSendo_usada();
                 etiqueta.setNome();
+                this.addLog("etiqueta excluida");
             }
         }
     }
 
-    public void addLog(String estado, int posicao){
+    void addLog(String estado, int posicao){
         Log newlog = new Log(estado, posicao);
         logs.add(newlog);
     }

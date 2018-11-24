@@ -4,14 +4,12 @@ import java.util.ArrayList;
 
 public class Usuario {
     //Atributos
-    private String nome;
     private String email;
     private String senha;
     private ArrayList<Quadro> quadros = new ArrayList<>();
 
     //Construtor
-    public Usuario(String nome, String email, String senha) {
-        setNome(nome);
+    public Usuario(String email, String senha) {
         setEmail(email);
         setSenha(senha);
     }
@@ -21,19 +19,11 @@ public class Usuario {
         return quadros;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    private void setEmail(String email) {
         this.email = email;
     }
 
@@ -41,7 +31,7 @@ public class Usuario {
         return senha;
     }
 
-    public void setSenha(String senha) {
+    private void setSenha(String senha) {
         this.senha = senha;
     }
 
